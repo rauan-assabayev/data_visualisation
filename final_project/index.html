@@ -128,42 +128,35 @@
 
           <div id="tooltip"></div><!-- div to hold tooltip. -->
 
-          <svg width="640" height="500" viewBox="0 0 960 500" id="regionsvg"></svg> <!-- svg to hold the map. -->
+          <div style="float:left;">
+            <svg width="640" height="500" viewBox="0 0 960 500" id="regionsvg"></svg> <!-- svg to hold the map. -->
+          </div>
 
+          <div id="barchart"></div>
 
 
           </main>
       </div>
     </div>
-
+<script type="text/javascript">
+  var selectedYear = 2019;
+  var mapSelected = [];
+</script>
 <script src="kz.js"></script> <!-- creates regionKZ. -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="slider.js"></script> <!-- creates regionKZ. -->
+<script src="slider.js"></script> 
+<script src="bar.js"></script> 
 <script>
 
   function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
-    return "<h4>"+n+"</h4><table>"+
-      "<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-      "<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-      "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-      "</table>";
+    return "<h4>"+n+"</h4>";
   }
 
   
   var sampleData ={}; /* Sample random data. */ 
-  var reg = ["AKM", "AKT", "ALM", "ATY", "KAR", "KUS", "KZY", "MAN", "PAV", "SEV", "VOS","YUZ", "ZAP", "ZHA", "NUR"]
-
-  reg.forEach(function(d){ 
-      var low = Math.round(100*Math.random()), 
-        mid=Math.round(100*Math.random()), 
-        high=Math.round(100*Math.random());
-        sampleData[d] = {low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-        avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100)}; 
-    });
-  
+  var reg = ["AKM", "AKT", "ALM", "ATY", "KAR", "KUS", "KZY", "MAN", "PAV", "SEV", "VOS","YUZ", "ZAP", "ZHA"]
   /* draw states on id #regionsvg */  
   regionKZ.draw("#regionsvg", sampleData, tooltipHtml);
-  d3.select(self.frameElement).style("height", "400px");
 
 
 

@@ -17,7 +17,9 @@
 ];
 var regionKZ={};
 	
-regionKZ.draw = function(id, data, toolTip){		
+regionKZ.draw = function(id, data, toolTip){	
+
+
 	function mouseOver(d){
 		d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
 		d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
@@ -28,6 +30,23 @@ regionKZ.draw = function(id, data, toolTip){
 	function mouseOut(){
 		d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
 	}
+
+	function onClickMapRegion(d,i) {
+	  if(mapSelected.includes(d.id)){
+		mapSelected = mapSelected.filter(function(item) {
+		    return item !== d.id
+		})
+		d3.select(this).style("fill","grey");
+
+		check();
+
+	  }else{
+		mapSelected.push(d.id);
+	  	d3.select(this).style("fill","#113771");
+	  }
+	  check();
+	}
+
 	
 	d3.select(id)
 		.selectAll(".state")
@@ -38,7 +57,9 @@ regionKZ.draw = function(id, data, toolTip){
 		.attr("d",function(d){ return d.d;})
 		// .style("fill",function(d){ return data[d.id].color; })
 		.style("fill","grey")
-		.on("mouseover", mouseOver).on("mouseout", mouseOut);
+		.on("click",onClickMapRegion)
+		.on("mouseover", mouseOver)
+		.on("mouseout", mouseOut);
 }
 
 this.regionKZ = regionKZ;

@@ -92,5 +92,9 @@ var margin = {left: 30, right: 30},
         }
         // use xVal as drag value
         handle.attr('cx', cx);
-        text.text('Value: ' + xVal);
+        text.text('Выбранный год: ' + xVal);
+        selectedYear = xVal;
+        // console.log(selectedYear);
+        // console.log(mapSelected);
+        //check();
     }
