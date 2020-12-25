@@ -38,13 +38,14 @@ regionKZ.draw = function(id, data, toolTip){
 		})
 		d3.select(this).style("fill","grey");
 
-		check();
+		update(gloabl_data);
 
 	  }else{
 		mapSelected.push(d.id);
 	  	d3.select(this).style("fill","#113771");
 	  }
-	  check();
+
+	  update(gloabl_data);
 	}
 
 	

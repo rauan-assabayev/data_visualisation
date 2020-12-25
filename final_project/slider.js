@@ -94,7 +94,5 @@ var margin = {left: 30, right: 30},
         handle.attr('cx', cx);
         text.text('Выбранный год: ' + xVal);
         selectedYear = xVal;
-        // console.log(selectedYear);
-        // console.log(mapSelected);
-        //check();
+        update(gloabl_data);
     }
