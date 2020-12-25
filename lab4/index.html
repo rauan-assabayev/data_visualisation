@@ -52,11 +52,15 @@ var svg = d3.select("body").append("svg")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/main/lab4/6_convocation.csv", function(error, data) {
+d3.csv("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/lab4/6_convocation.csv", function(error, data) {
 
     data.forEach(function(d) {
         d.age = parseDate(d.date_of_birth);
-        d.age = d.age.getFullYear();
+        var diff_ms = Date.now() - d.age.getTime();
+        var age_dt = new Date(diff_ms); 
+        d.age =  Math.abs(age_dt.getUTCFullYear() - 1970);
+        
+        
     });
 
     var ageList = {};
