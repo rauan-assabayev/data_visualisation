@@ -7,14 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-
     <title>The Economist</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
-
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
@@ -25,7 +21,7 @@
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="#">Выйти</a>
         </li>
       </ul>
     </nav>
@@ -38,43 +34,43 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
-                  Промышленность <span class="sr-only">(current)</span>
+                  Статистика промышленного производства <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                  Orders
+                  Регионы по зонам 
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart"></span>
-                  Products
+                  Статистика инвестиций
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="users"></span>
-                  Customers
+                  Статистика внутренней торговли
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="bar-chart-2"></span>
-                  Reports
+                  Статистика транспорта
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
-                  Integrations
+                  Статистика связи
                 </a>
               </li>
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
+              <span>Динамические таблицы</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>
@@ -83,64 +79,57 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Current month
+                  Демографическая статистика
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Last quarter
+                  Статистика образования
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Social engagement
+                  Статистика здравоохранения
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Year-end sale
+                  Статистика уровня жизни
                 </a>
               </li>
             </ul>
           </div>
         </nav>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h5">Объемы и индексы физического объема промышленной продукции по регионам</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
+                <button class="btn btn-sm btn-outline-secondary">Поделиться</button>
+                <button class="btn btn-sm btn-outline-secondary">Скачать</button>
               </div>
               <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
                 <span data-feather="calendar"></span>
-                This week
+                CSV
               </button>
             </div>
           </div>
-
           <div id="chart"></div>
-
           <div id="tooltip"></div><!-- div to hold tooltip. -->
-
           <div style="float:left;">
-            <svg width="600" height="400" viewBox="0 0 960 500" id="regionsvg"></svg> <!-- svg to hold the map. -->
+            <svg width="600" height="400" viewBox="0 0 960 400" id="regionsvg"></svg> <!-- svg to hold the map. -->
           </div>
 
           <div id="barchart"></div>
-
-
           </main>
       </div>
     </div>
 <script type="text/javascript">
   var selectedYear = 2019;
-  var mapSelected = [];
+  var selectedRegions = [];
 </script>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -148,22 +137,14 @@
 <script src="bar.js"></script> 
 <script src="kz.js"></script> <!-- creates regionKZ. -->
 <script>
-
   function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
     return "<h4>"+n+"</h4>";
   }
-
-  
   var sampleData ={}; /* Sample random data. */ 
   var reg = ["AKM", "AKT", "ALM", "ATY", "KAR", "KUS", "KZY", "MAN", "PAV", "SEV", "VOS","YUZ", "ZAP", "ZHA"]
   /* draw states on id #regionsvg */  
   regionKZ.draw("#regionsvg", sampleData, tooltipHtml);
-
-
-
-
 </script>
 
-
-  </body>
+</body>
 </html>

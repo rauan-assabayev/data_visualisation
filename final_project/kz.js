@@ -23,7 +23,7 @@ regionKZ.draw = function(id, data, toolTip){
 	function mouseOver(d){
 		d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
 		d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
-			.style("left", (d3.event.pageX - 200) + "px")     
+			.style("left", (d3.event.pageX - 250) + "px")     
 			.style("top", (d3.event.pageY - 78) + "px");
 	}
 	
@@ -32,19 +32,15 @@ regionKZ.draw = function(id, data, toolTip){
 	}
 
 	function onClickMapRegion(d,i) {
-	  if(mapSelected.includes(d.id)){
-		mapSelected = mapSelected.filter(function(item) {
+	  if(selectedRegions.includes(d.id)){
+		selectedRegions = mapSelected.filter(function(item) {
 		    return item !== d.id
 		})
 		d3.select(this).style("fill","grey");
-
-		update(gloabl_data);
-
 	  }else{
-		mapSelected.push(d.id);
+		selectedRegions.push(d.id);
 	  	d3.select(this).style("fill","#113771");
 	  }
-
 	  update(gloabl_data);
 	}
 
