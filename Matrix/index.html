@@ -30,8 +30,8 @@
   <script>
     var PromiseWrapper = d => new Promise(resolve => d3.csv(d, p=>resolve(p)));
     Promise.all([
-      PromiseWrapper("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/Matrix/lecture8/nodelist.csv"),
-      PromiseWrapper("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/Matrix/lecture8/edgelist.csv")
+      PromiseWrapper("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/Matrix/nodelist.csv"),
+      PromiseWrapper("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/Matrix/edgelist..csv")
     ])
     .then(resolve=>{
       createAdjacencyMatrix(resolve[0],resolve[1]);
