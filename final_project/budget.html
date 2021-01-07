@@ -33,7 +33,7 @@
 <p id="chart">
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-<script src="charts/sankey.js"></script>
+<script src="sankey.js"></script>
 <script>
   
 var units = "тыс. тенге";
@@ -124,10 +124,11 @@ d3.json("https://theeconomist.kz/dataset/budget_2020.json", function(error, grap
   node.append("text")
       .attr("x", -6)
       .attr("y", function(d) { return d.dy / 2; })
-      .attr("dy", ".2em")
+      .attr("dy", ".35em")
       .attr("text-anchor", "end")
       .attr("transform", null)
-      .text(function(d) { return d.name.substring(0,Math.min(40,d.name.length)); })
+    .attr("font-size","smaller")
+      .text(function(d) { return d.name.substring(0,Math.min(50,d.name.length)); })
     .filter(function(d) { return d.x < width / 2; })
       .attr("x", 6 + sankey.nodeWidth())
       .attr("text-anchor", "start");
