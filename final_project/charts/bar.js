@@ -68,7 +68,7 @@ function update(dataset){
 }
 
 
-d3.csv("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/final_project/industry_2008_2019").then(function(local_data) {
+d3.csv("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/final_project/dataset/industry_2008_2019.csv").then(function(local_data) {
   gloabl_data = local_data;
   update(local_data)
 })
