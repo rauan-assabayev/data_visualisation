@@ -8,6 +8,17 @@ body {
   vertical-align: text-bottom;
 }
 
+select{
+  display: inline-block;
+  margin-right: 40px;
+}
+
+.select_wrapper{
+  display: inline-block;
+  float:left;
+  margin-right: 40px;
+}
+
 /*
  * Sidebar
  */
