@@ -1,37 +1,140 @@
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>SANKEY Experiment</title>
-    <style>
-
-    .node rect {
-      cursor: move;
-      fill-opacity: .9;
-      shape-rendering: crispEdges;
-    }
-
-    .node text {
-      pointer-events: none;
-      text-shadow: 0 1px 0 #fff;
-    }
-
-    .link {
-      fill: none;
-      stroke: #000;
-      stroke-opacity: .2;
-    }
-
-    .link:hover {
-      stroke-opacity: .5;
-    }
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <title>The Economist</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
   </head>
-<body>
- 
-<p id="chart">
- 
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">DATA IS EVERYWHERE</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Выйти</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span data-feather="home"></span>
+                  Статистика промышленного производства <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="budget2021.html">
+                  <span data-feather="file"></span>
+                  Бюджет РК 2021
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Регионы по зонам 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Статистика инвестиций
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  Статистика внутренней торговли
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Статистика транспорта
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Статистика связи
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Динамические таблицы</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Демографическая статистика
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Статистика образования
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Статистика здравоохранения
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Статистика уровня жизни
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          
+          <div >
+            <select id="s_income">
+              <option value="0">Не выбрано</option>
+              <option value="1">По категориям</option>
+              <option value="2">По классам</option>
+              <option value="3">По подклассам</option>
+            </select>
+          </div>
+
+          <div >
+            <select id="s_expenses">
+              <option value="4">Не выбрано</option>
+              <option value="5">Бюджет РК 2021</option>
+              <option value="6">По категориям</option>
+              <option value="7">По классам</option>
+            </select>
+          </div>
+
+          <p id="chart">
+        </main>
+      </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script src="charts/sankey.js"></script>
 <script>
@@ -39,7 +142,7 @@
 var units = "тыс. тенге";
  
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 1200 - margin.left - margin.right,
+    width = 1140 - margin.left - margin.right,
     height = 740 - margin.top - margin.bottom;
  
 var formatNumber = d3.format(",.0f"),    // zero decimal places
@@ -50,7 +153,7 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
  
@@ -61,10 +164,15 @@ var sankey = d3.sankey()
     .size([width, height]);
  
 var path = sankey.link();
+
+var t = d3.transition()
+      .duration(750)
+      .ease("linear");
+
+
  
 // load the data
-d3.json("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/master/final_project/dataset/kz_budget_2021_by_subclass.json", function(error, graph) {
- 
+function update(graph){
     var nodeMap = {};
     graph.nodes.forEach(function(x) { nodeMap[x.name] = x; });
     graph.links = graph.links.map(function(x) {
@@ -74,51 +182,47 @@ d3.json("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/ma
         value: x.value
       };
     });
+
  
   sankey
       .nodes(graph.nodes)
       .links(graph.links)
       .layout(24);
  
-// add in the links
-  var link = svg.append("g").selectAll(".link")
-      .data(graph.links)
-    .enter().append("path")
-      .attr("class", "link")
-      .attr("d", path)
-      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-      .sort(function(a, b) { return b.dy - a.dy; });
- 
-// add the link titles
-  link.append("title")
-        .text(function(d) {
-        return d.source.name + " → " + 
-                d.target.name + "\n" + format(d.value); });
+
  
 // add in the nodes
   var node = svg.append("g").selectAll(".node")
       .data(graph.nodes)
-    .enter().append("g")
+      .enter()
+      .append("g")
       .attr("class", "node")
-      .attr("transform", function(d) { 
-      return "translate(" + d.x + "," + d.y + ")"; })
-    .call(d3.behavior.drag()
+      .attr('opacity', 0)
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .call(d3.behavior.drag()
       .origin(function(d) { return d; })
-      .on("dragstart", function() { 
-      this.parentNode.appendChild(this); })
+      .on("dragstart", function() { this.parentNode.appendChild(this); })
       .on("drag", dragmove));
  
 // add the rectangles for the nodes
   node.append("rect")
       .attr("height", function(d) { return d.dy; })
       .attr("width", sankey.nodeWidth())
-      .style("fill", function(d) { 
-      return d.color = color(d.name.replace(/ .*/, "")); })
-      .style("stroke", function(d) { 
-      return d3.rgb(d.color).darker(2); })
-    .append("title")
-      .text(function(d) { 
-      return d.name + "\n" + format(d.value); });
+      .style("fill", function(d) { return d.color = color(d.name.replace(/ .*/, "")); })
+      .style("stroke", function(d) { return d3.rgb(d.color).darker(2); });
+
+
+
+  svg.selectAll(".node")
+        .transition()
+        .duration(370)
+        .attr('opacity', 1);
+
+
+  node.append("title")
+      .transition()
+      .duration(700)
+      .text(function(d) { return d.name + "\n" + format(d.value); });
  
 // add in the title for the nodes
   node.append("text")
@@ -127,11 +231,41 @@ d3.json("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/ma
       .attr("dy", ".35em")
       .attr("text-anchor", "end")
       .attr("transform", null)
-    .attr("font-size","smaller")
+      .attr("font-size","smaller")
       .text(function(d) { return d.name.substring(0,Math.min(50,d.name.length)); })
-    .filter(function(d) { return d.x < width / 2; })
+      .filter(function(d) { return d.x < width / 2; })
       .attr("x", 6 + sankey.nodeWidth())
       .attr("text-anchor", "start");
+
+
+// add in the links
+  var link = svg.append("g").selectAll(".link")
+      .data(graph.links)
+      .enter()
+      .append("path")
+      .attr('opacity', 0)
+      .attr("d", path)
+      .style("stroke-width", function(d) {
+        return Math.max(1, d.dy) + "px";
+      })
+      .attr("class", "link")
+      .attr("d", path)
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .style('stroke', function(d){return d.source.color;})
+      .sort(function(a, b) { return b.dy - a.dy; })
+
+
+  // add the link titles
+  link.append("title")
+      .text(function(d) {return d.source.name + " → " + d.target.name + "\n" + format(d.value); });
+
+  svg.selectAll(".link")
+        .transition()
+        .duration(370)
+        .attr('opacity', 1);
+
+
+
  
 // the function for moving the nodes
   function dragmove(d) {
@@ -144,9 +278,55 @@ d3.json("https://raw.githubusercontent.com/rauan-assabayev/data_visualisation/ma
     sankey.relayout();
     link.attr("d", path);
   }
+
+
+}
+
+
+$("#s_income").change(function () {
+  var category = $(this).val();
+  d3.json("dataset/kz_budget_2021.json", function(error, graph) {
+      var filtered_graph  = {};
+      var dohod = $("#s_income").val();
+      var zatraty = $("#s_expenses").val();
+      filtered_graph["links"] = graph.links.filter(a => a.category <= dohod || (a.category >= 5 && a.category <= zatraty) );
+      filtered_graph["nodes"] = graph.nodes.filter(a => a.category <= dohod || (a.category >= 5 && a.category <= zatraty) );
+      d3.selectAll(".node").remove();
+      d3.selectAll(".link").remove();
+      update(filtered_graph);
+      
+  });
 });
+
+
+$("#s_expenses").change(function () {
+  var category = $(this).val();
+  d3.json("dataset/kz_budget_2021.json", function(error, graph) {
+      var filtered_graph  = {};
+      var dohod = $("#s_income").val();
+      var zatraty = $("#s_expenses").val();
+      if(zatraty == 7){
+        d3.selectAll("svg")
+          .attr("width", 2000 + margin.left + margin.right)
+          .attr("height", 2000 + margin.top + margin.bottom);
+        sankey.size([2000, 2000]);
+      }else{
+        d3.selectAll("svg")
+          .attr("width", 1140 + margin.left + margin.right)
+          .attr("height", 740 + margin.top + margin.bottom);
+        sankey.size([1140, 740]);
+      }
+      filtered_graph["links"] = graph.links.filter(a => a.category <= dohod || (a.category >= 5 && a.category <= zatraty) );
+      filtered_graph["nodes"] = graph.nodes.filter(a => a.category <= dohod || (a.category >= 5 && a.category <= zatraty) );
+      d3.selectAll(".node").remove();
+      d3.selectAll(".link").remove();
+
+      update(filtered_graph);
+      
+  });
+});
+
  
 </script>
- 
 </body>
 </html>
