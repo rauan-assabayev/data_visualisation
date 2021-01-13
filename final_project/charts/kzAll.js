@@ -18,23 +18,22 @@
 	{id:"ALA",n:"Город Алматы",d:"M1175,734.5c-.2.3-.6,0-1.5.3-.1,0-.2.1-.3.1a2.1,2.1,0,0,0-.8.6l-.4.4c-.8,1.3.1,2.9.1,3,.5.8.8.7,1.2,1.5a3.32,3.32,0,0,1,.1,2.6,3.56,3.56,0,0,1-1.6,2.2c-1.1.6-2.2.3-3.5-.1a9.11,9.11,0,0,1-3.2-1.7c-1.3-1-2.3-1.8-2.7-3.1-.3-.8-.1-.9.1-4.1.2-2.7,0-2.9.4-3.5.6-.9,1.6-1.3,3.6-2.1a18.38,18.38,0,0,1,2.4-.7c2.7-.8,3.1-.6,3.3-.5s.5.3,1.5,2.1C1175.2,733.9,1175.2,734.3,1175,734.5Z"},
 	{id:"CIT",n:"Город Шымкент",d:"M892.2,793.3c-.4.3-.8.3-5-.1-2.2-.2-2.8-.3-3.4.1-1,.7-.8,2-1.8,2.4a2.32,2.32,0,0,1-1.8-.4,3.78,3.78,0,0,1-1.9-1.8c-.5-1.1-.1-2.4.8-4.8a13.84,13.84,0,0,1,1.7-3.8,10.05,10.05,0,0,1,4.3-3.4c1.5-.6,3-1.2,4.4-.6a4.73,4.73,0,0,1,2.3,3.5c.2,1.7-.8,2.9-.1,3.7.4.5.9.2,1.3.7C893.8,789.7,893.5,792.4,892.2,793.3Z"}
 ];
+
 var regionKZ={};
-	
-regionKZ.draw = function(id, data, toolTip){	
 
-
-	function mouseOver(d){
+function mouseOver(d){
 		d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
 		d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
 			.style("left", (d3.event.pageX - 250) + "px")     
 			.style("top", (d3.event.pageY - 78) + "px");
-	}
-	
-	function mouseOut(){
-		d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
-	}
+}
 
-	function onClickMapRegion(d,i) {
+function mouseOut(){
+	d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+}
+
+function onClickMapRegion(d,i) {
+	  console.log(d);
 	  if(selectedRegions.includes(d.id)){
 		selectedRegions = selectedRegions.filter(function(item) {
 		    return item !== d.id
@@ -44,9 +43,10 @@ regionKZ.draw = function(id, data, toolTip){
 		selectedRegions.push(d.id);
 	  	d3.select(this).style("fill","#113771");
 	  }
-	  update(gloabl_data);
 	}
 
+
+regionKZ.draw = function(id, data, toolTip){	
 	
 	d3.select(id)
 		.selectAll(".state")
